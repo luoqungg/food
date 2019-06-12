@@ -1,0 +1,69 @@
+﻿@model WebApplication6.ViewModel.PostDetailViewModel
+@foreach (var p in Model.post_comment)
+{
+    <div class="comment-show">
+        <div class="comment-show-con clearfix">
+            <div id="info-show">
+                <ul>
+                    <li>
+                        <div class="head-face">
+                            <img src="@p.User_img">
+                        </div>
+                        <div class="reply-cont">
+                            <p class="username">@p.User_name</p>
+                            <p class="comment-body">@p.PostComment_content</p>
+                            <p class="comment-footer">
+                                <lable>@p.AddTime</lable>
+                                <button value="回复" class="btnrep" style="float:right">回复</button>
+                            </p>
+                            @{ Html.RenderAction("PostReplyShow", "Post", new { id = @p.PostComment_id });}
+
+                            @using (Ajax.BeginForm("PostReply", "Post", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "Hello" }))
+                            {
+                                <div class="rep" hidden>
+                                    <div class="cont-box">
+                                        <textarea class="text" placeholder="请输入..." name="Reply1"></textarea>
+                                        <input type="hidden" name="Com_id" value="@p.PostComment_id" />
+                                    </div>
+                                    <div class="tools-box">
+                                        <div class="operator-box-btn"><span class="face-icon"></span></div>
+                                        <div class="submit-btn"><input type="submit" value="提交回复" class="wo" /></div>
+                                    </div>
+                                </div>
+
+                            }
+                            <lable id="Hello" style="display:none"></lable>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+<script>
+        $(".btnrep").click(function () {
+            $(".rep").toggle();
+    });
+
+
+    $(".wo").click(function () { //提交回复
+        var time = setInterval
+        clearInterval(time);
+        setTimeout(function () {
+            var Comment = $("#Hello").text();
+            if (Comment == "aa") {
+                alert("回复成功！");
+                location.reload(true);
+            }
+            else if (Comment == "nn") {
+                alert('请先登录！');
+            }
+            else if (Comment == "kong") {
+                alert('回复不能为空！');
+            }
+
+
+        }, 1000);
+
+    });
+</script>

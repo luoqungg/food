@@ -1,0 +1,17 @@
+﻿@model IEnumerable<WebApplication6.Models.News>
+@{
+    ViewBag.Title = "MoreNews";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div class="container">
+    <h2>全部新闻</h2>
+    @foreach (var p in Model)
+    {
+        <ul style="list-style-type:none">
+            <li><a href="@Url.Action("News","Home",new { id=p.News_id})">@p.News_title</a></li>
+        </ul>
+    }
+</div>
+
+

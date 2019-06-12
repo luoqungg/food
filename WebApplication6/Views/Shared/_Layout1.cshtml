@@ -1,0 +1,346 @@
+﻿
+@{
+    ViewBag.Title = "";
+}
+
+<h2></h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/bootstrap-3.3.7-dist/css/bootstrap.min.css")
+    @Scripts.Render("~/bootstrap-3.3.7-dist/js/bootstrap.min.js")
+    @Styles.Render("~/font-awesome-4.7.0/css/font-awesome.min.css")
+    @Scripts.Render("~/Scripts/jquery-3.3.1.min.js")
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <style type="text/css">
+        .img4 {
+            width: 30px;
+            height: 30px;
+            border-radius: 20px;
+            position: absolute;
+            left: 1200px;
+            top: 10px;
+            z-index: 2;
+        }
+        img.img4 :hover {
+            display:block ;
+        }
+        .navbar-default {
+            background-color: #C1E2B3;
+        }
+        .navbar .nav > li .dropdown-menu {
+            margin: 0;
+        }
+
+        .navbar .nav > li:hover .dropdown-menu {
+            display: block;
+        }
+        .headimg .userin {
+            height: 200px;
+            display: none;
+            float: left;
+            position: absolute;
+            width: 200px;
+            border: none;
+            background-color: #E7EFF3;
+            overflow: visible;
+            margin-left: -100px;
+            width: 240px;
+            padding: 20px 0 0;
+            background: #fff;
+            -webkit-box-shadow: rgba(0,0,0,.16) 0 2px 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.16);
+            border-radius: 0 0 4px 4px;
+            line-height: normal;
+        }
+
+        .userin a {
+            text-decoration: none !important;
+            color: #090808;
+        }
+
+        .listall {
+            width: 100%;
+            height: 20px;
+            margin: 14px 9px;
+        }
+
+            .listall a {
+                font-size: 15px;
+            }
+
+        .footuse {
+            width: 90%;
+            padding-top: 10px;
+        }
+
+            .footuse a {
+                float: right;
+                padding-right: 10px;
+            }
+
+        .footbtn {
+            margin: 10px 0;
+            float: right;
+        }
+
+        .headimg a:hover {
+            margin: 0;
+        }
+
+        .headimg:hover .userin {
+            display: block;
+        }
+
+        .name {
+            text-align: center;
+            width: 100%;
+            height: 30px;
+            font-size: 20px;
+        }
+
+            .name a {
+                text-decoration: none;
+            }
+
+        .use {
+            width: 100%;
+            padding-top: 10px;
+        }
+
+        .footer {
+            background: #efefef;
+        }
+
+        .fo {
+            clear: both;
+            margin-top: 30px;
+        }
+
+        .fo-left {
+            width: 55%;
+            float: left;
+        }
+
+        .aboutus {
+            width: 100%;
+            padding-bottom: 30px;
+        }
+
+        .abouthead {
+            font-size: 20px;
+            text-decoration: none;
+            color: #808080;
+        }
+
+        .aboutlist {
+            margin: 10px 0px;
+        }
+
+            .aboutlist a {
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 15px;
+                padding-right: 30px;
+                color: #181717;
+            }
+
+        .fo-right {
+            float: left;
+        }
+
+        .ico {
+            width: 6%;
+            float: left;
+            margin-right: 30px;
+        }
+
+            .ico img:hover {
+                opacity: 0.7;
+            }
+
+        .copyright {
+            clear: both;
+            width: 100%;
+            text-align: center;
+            font-size: 15px;
+            padding: 30px 0px;
+            color: #B8B0B0;
+        }
+
+        .navfont a {
+            font-size: 15px;
+            color: #000000;
+        }
+
+        .weixin {
+            height: 50px;
+            position: relative;
+            font-size: 12px;
+            text-align: center;
+        }
+
+            .weixin a {
+                height: 50px;
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0; /*background:url(../../Images/weixin.png) no-repeat center top;*/
+            }
+
+            .weixin .weixin_nr {
+                width: 120px;
+                height: 140px;
+                padding: 10px;
+                background: #fff;
+                text-align: center;
+                position: absolute;
+                left: -45px;
+                top: 45px;
+                display: none;
+            }
+
+                .weixin .weixin_nr img {
+                    margin-bottom: 5px;
+                }
+
+                .weixin .weixin_nr .arrow {
+                    width: 0;
+                    height: 0;
+                    border-bottom: 10px solid #fff;
+                    border-left: 10px solid transparent;
+                    border-right: 10px solid transparent;
+                    position: absolute;
+                    left: 50px;
+                    top: -10px;
+                }
+
+            .weixin.on .weixin_nr {
+                display: block;
+            }
+    </style>
+    <meta name="description" content="The description of my page" />
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top" style="z-index :1;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("美食", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "font-size:30px;color:#84B9EF" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="navfont">@Html.ActionLink("主页", "Index", "Home")</li>
+                    <li class="dropdown navfont">
+                        @Html.ActionLink("菜谱", "Index", "Caipu")
+                    </li>
+                    <li class="navfont">@Html.ActionLink("视频", "VideoIndex", "Video")</li>
+                    <li class="navfont">@Html.ActionLink("帖子", "PostIndex", "Post")</li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                    @using (Html.BeginForm("Index","Search", FormMethod.Get, new { @class = "form-inline", role = "form" }))
+                    {
+
+                        <div class="form-group">
+                            @Html.TextBox("searchString", ViewBag.SearchString as string, htmlAttributes: new { @class = "form-control", placeholder = "请输入名字" })
+                        </div>
+                        <input type="submit" value="搜索" class="btn btn-primary" />
+                    }
+                 
+
+
+                </form>
+                <ul class="nav navbar-nav navbar-right ">
+                    <li>
+
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle " data-toggle="dropdown">
+                            @*@Html.ActionLink("发布", "Create", "Publish")*@发布<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href=" #"> @Html.ActionLink("发布菜谱", "Menu", "Publish")</a></li>
+                            <li><a href=" #">@Html.ActionLink("发布帖子", "Post", "Publish")</a></li>
+                            <li><a href=" #">@Html.ActionLink("发布视频", "Video", "Publish")</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                @if (Session["user"] != null)
+                {
+
+                    <a id="1" href="http://localhost:52679/User/Index ">  <img class="img4" src="@Session["img"]" /></a>
+
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("注册", "Regist", "Login", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("登录", "Login", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    </ul>
+                }
+
+              
+
+            </div>
+
+        </div>
+    </div>
+    @RenderBody()
+    
+
+
+    <div class="footer">
+        <div class="container">
+            <div class="fo">
+                <div class="fo-left">
+                    <div class="aboutus">
+                        <div class="abouthead">关于我们</div>
+                        <div class="aboutlist">
+                            <a>关于我们</a>
+                            <a>联系我们</a>
+                            <a>您的建议</a>
+                            <a>免责声明</a>
+                            <a href="@Url.Action("LoginAdmin","Login")">管理员登录</a>
+                        </div>
+                    </div>
+                    
+
+                    <div class="aboutus">
+                            <div class="abouthead">友情链接</div>
+                            <div class="aboutlist">
+                                <a>美食街</a>
+                                <a>我爱美食</a>
+                                <a>江西人最爱</a>
+                                <a>美食网</a>
+                                <a>美食大全</a>
+                                <a>菜谱家</a>
+
+                            </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="copyright">
+                    Copyright © 2016 江西师范大学 All Rights Reserved | 赣 L&W&X
+                </div>
+            </div>
+        </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

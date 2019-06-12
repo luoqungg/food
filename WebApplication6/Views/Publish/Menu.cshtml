@@ -1,0 +1,55 @@
+﻿@model WebApplication6.Models.FoodShare
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<style>
+    .textbox {
+        width: 200px;
+    }
+
+    .textbox1 {
+        width: 800px;
+        height: 250px;
+    }
+    body {
+        background: url() top center no-repeat;
+        background-size: cover;
+    }
+</style>
+<script src="~/Scripts/snowfall.jquery.js"></script>
+<body @*style="background-color:white; background-image:url(/images/下载.jpg);*@">
+    <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布菜谱</h2>
+
+    @using (Html.BeginForm("Menu", "Publish", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div style="position:absolute;left:300px;top:150px;height:300px;">
+            @Html.Label("菜谱名称");
+            <br />
+            @Html.TextBoxFor(n => n.Fs_title, new { @class = "textbox" })
+            <br />
+            @Html.Label("菜谱种类");
+            <br />
+            @Html.TextBoxFor(n => n.Fs_lable, new { @class = "textbox" })
+            <br />
+            @Html.Label("菜谱做法");
+            <br />
+            @Html.TextAreaFor(n => n.Fs_detail, new { @class = "textbox1", style = "resize:none;max-width:800px;", placeholder = "菜谱做法最长200字" })
+            <br />
+            <input type="file" name="img" />
+            <input type="submit" value="提交">
+        </div>
+    }
+
+</body>
+
+@*<script>
+        $(document).snowfall('clear');
+    $(document).snowfall({
+        images: "/images/beijing.jpg",
+            flakeCount: 40,
+            minSize: 5,
+            maxSize: 22
+        });
+</script>*@

@@ -1,0 +1,90 @@
+﻿@model WebApplication6.Models.Admin
+@{
+    ViewBag.Title = "LoginAdmin";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        .a {
+            position: absolute;
+            left: 250px;
+            top: 150px;
+        }
+
+        .b {
+            position: absolute;
+            left: 1000px;
+            top: 150px;
+        }
+
+        p {
+            position: absolute;
+            left: 1000px;
+            top: 350px;
+        }
+
+        .login {
+            position: absolute;
+            left: 250px;
+            top: 250px;
+        }
+    </style>
+    <script>
+    $(function () {
+
+        // 为看不清楚绑定事件
+        $("#seee").click(function () {
+            $("#validimgs").attr("src", "@Url.Content("~/YZM/GetYZM?")" + Math.random());
+        });
+
+        // 为验证码绑定click与mouseover
+        $("#validimgs").mouseover(function () {
+            $(this).css("cursor", "pointer");
+        }).click(function () {
+            $("#seee").trigger("click");
+        });
+    });
+    function reloadcodes() {
+        var verify = document.getElementById('validimgs');
+        verify.setAttribute('src', '@Url.Content("/YZM/GetYZM?")' + Math.random());
+    }
+    </script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <h2 class="a">管理员登陆</h2>
+    <div class="login ">
+        @using (Html.BeginForm("LoginAdmin", "Login", FormMethod.Post))
+        {
+
+            @Html.Label("电话号码")
+            @Html.TextBoxFor(c => c.Admin_id)
+            @Html.ValidationMessageFor(c => c.Admin_id)
+            <br />
+            @Html.Label("密码")
+            @Html.TextBoxFor(c => c.Admin_pwd)
+            @Html.ValidationMessageFor(c => c.Admin_pwd)
+            <br />
+            <label>验证码</label>
+            <div>
+                <div style="float: left;">
+                    <input style="width: 200px;" id="txtverifcode1" name="txtverifcode1" type="text">
+                </div>
+                <div style="float: left;">
+                    <span id="txtverifcod2"> <img id="validimgs" src="@Url.Action("GetYZM", "YZM")" alt="看不清，点击换一张" /><a style="text-decoration:none;cursor:pointer" id="seee" onclick="reloadcodes()">换一张</a></span>
+
+                </div>
+            </div>
+            <br /> <br />
+            <input type="submit" value="提交" />
+            <br />
+            @Html.ActionLink("还没有注册？", "Regist", "Login")
+
+        }
+    </div>
+</body>
+</html>

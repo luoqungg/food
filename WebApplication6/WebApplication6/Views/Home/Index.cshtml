@@ -1,0 +1,234 @@
+﻿@using WebApplication6.Models;
+@using WebApplication6.ViewModels;
+@model WebApplication6.ViewModels.IndexViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/photo.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <title></title>
+    <style>
+        .div {
+            position: absolute;
+            left: 200px;
+        }
+
+        .div1 {
+            position: absolute;
+            left: 100px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .li {
+            float: left;
+            padding-left: 70px;
+        }
+
+            .li:hover {
+                cursor: pointer;
+                transform: translate(0,-10px);
+            }
+
+        .li1 {
+            float: left;
+            padding-left: 200px;
+        }
+
+        .img4 {
+            width: 30px;
+            height: 30px;
+            border-radius: 20px;
+        }
+
+        .img1 {
+            width: 200px;
+            height: 200px;
+        }
+
+        .img2 {
+            width: 100px;
+            height: 100px;
+        }
+
+        .img3 {
+            width: 30px;
+            height: 30px;
+            border-radius: 20px;
+            float: left;
+        }
+
+        .table {
+            position: absolute;
+            font-size: 15px;
+            padding-left: 20px;
+            border-style: none;
+            border: 0px;
+        }
+
+        .element {
+            display: none;
+        }
+
+        .father:hover .element {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="panel panel-success">
+            <div class="panel-heading"><h4>新闻</h4></div>
+            <div class="panel-body">
+                <div class="col-md-9">
+                    <div id="myCarousel" class="carousel slide">
+                        <!-- 轮播（Carousel）指标 -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+                        <!-- 轮播（Carousel）项目 -->
+                        <div class="carousel-inner">
+                            <div class="item active" style="background:url(../../images/Slid/Slid_1.jpg); background-size:cover;height:300px;">
+                                <a href="#"></a>
+                            </div>
+                            <div class="item" style="background:url(../../images/Slid/Slid_2.jpg); background-size:cover;height:300px ;">
+                                <a href="#"></a>
+                            </div>
+                            <div class="item" style="background:url(../../images/Slid/Slid_3.jpg); background-size:cover;height:300px;">
+                                <a href="#"></a>
+                            </div>
+                        </div>
+                        <!-- 轮播（Carousel）导航 -->
+                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                @foreach (News p in Model.News)
+                {
+                    <ul>
+
+                        <li><a href="@Url.Action("News","Home",new { id=p.News_id})" class="text-danger">@p.News_title</a></li>
+                        <br />
+                    </ul>
+                }
+                <p class="text-danger">@Html.ActionLink("更多热门新闻", "MoreNews", "Home")</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel panel-heading"><h4>菜谱</h4></div>
+            <div class="panel panel-body">
+                
+
+                    <ul class="">
+                        @foreach (var p in Model.FOODSHARE)
+                        {
+                            <li class="li">
+                                <a href="@Url.Action("Detail","Caipu", new { id = @p.Fs_id,})">
+                                    <img class=" img1" src="@p.Fs_img  " />
+                                </a>
+                                <p href="">@p.Fs_title</p>
+                                <p> @p.Fs_lable</p>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h4>@Html.ActionLink("视频", "VideoIndex", "Video")</h4></div>
+            <div class="panel panel-body">
+                <div class="tab">
+                    <div class="box">
+                        <ul class="menus">
+                            <li class="bg">推荐</li>
+                            <li>最新</li>
+                            <li>最热</li>
+                        </ul>
+                        <div class="right">
+                            <div class="scroll">
+                                <div class="tab_right">
+                                    <div class="lanrenzhijia">
+                                        <ul class="clearfix">
+                                            @foreach (VideoUserViewModel p in Model.Video1)
+                                            {
+                                                <li>
+                                                    <div class="photo"><a href="@Url.Action("VideoDetails","Video",new { id=p.Video_id})"><img src="@p.Video_img" height="160" /></a></div>
+                                                    <div class="rsp"></div>
+                                                    <div class="text"><a href="@Url.Action("VideoDetails","Video",new { id=p.Video_id})"><h3>@p.Video_title</h3><div>作者：@p.User_name</div>></a></div>
+                                                </li>
+                                            }
+                                        </ul>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="tab_right">
+                                    <div class="lanrenzhijia">
+                                        <ul class="clearfix">
+                                            @foreach (VideoUserViewModel p in Model.Video2)
+                                            {
+                                                <li>
+                                                    <div class="photo"><a href="@Url.Action("VideoDetails","Video",new { id=p.Video_id})"><img src="@p.Video_img" height="160" /></a></div>
+                                                    <div class="rsp"></div>
+                                                    <div class="text"><a href="@Url.Action("VideoDetails","Video",new { id=p.Video_id})"><h3>@p.Video_title</h3><div>作者：@p.User_name</div>></a></div>
+                                                </li>
+                                            }
+                                        </ul>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="tab_right">
+                                    <div class="lanrenzhijia">
+                                        <ul class="clearfix">
+                                            @foreach (VideoUserViewModel p in Model.Video3)
+                                            {
+                                                <li>
+                                                    <div class="photo"><a href="@Url.Action("VideoDetails","Video",new { id=p.Video_id})"><img src="@p.Video_img" height="160" /></a></div>
+                                                    <div class="rsp"></div>
+                                                    <div class="text"><a href="@Url.Action("VideoDetails","Video",new { id=p.Video_id})"><h3>@p.Video_title</h3><div>作者：@p.User_name</div>></a></div>
+                                                </li>
+                                            }
+                                        </ul>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <script src="~/Scripts/jquery-1.8.3.min.js"></script>
+    <script src="~/Scripts/index.js"></script>
+    <script src="~/Scripts/photo.js"></script>
+
+</body>
+</html>
+
+

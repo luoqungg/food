@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FoodModelStoreContainer" CdmEntityContainer="FoodEntities">
+    <EntitySetMapping Name="Admin">
+      <EntityTypeMapping TypeName="FoodModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="Admin_id" ColumnName="Admin_id" />
+          <ScalarProperty Name="Admin_name" ColumnName="Admin_name" />
+          <ScalarProperty Name="Admin_pwd" ColumnName="Admin_pwd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodShare">
+      <EntityTypeMapping TypeName="FoodModel.FoodShare">
+        <MappingFragment StoreEntitySet="FoodShare">
+          <ScalarProperty Name="Fs_id" ColumnName="Fs_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Fs_title" ColumnName="Fs_title" />
+          <ScalarProperty Name="Fs_img" ColumnName="Fs_img" />
+          <ScalarProperty Name="Fs_lable" ColumnName="Fs_lable" />
+          <ScalarProperty Name="Fs_addtime" ColumnName="Fs_addtime" />
+          <ScalarProperty Name="Fs_detail" ColumnName="Fs_detail" />
+          <ScalarProperty Name="ReadCount" ColumnName="ReadCount" />
+          <ScalarProperty Name="Collection" ColumnName="Collection" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodShareCollection">
+      <EntityTypeMapping TypeName="FoodModel.FoodShareCollection">
+        <MappingFragment StoreEntitySet="FoodShareCollection">
+          <ScalarProperty Name="FsC_id" ColumnName="FsC_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Fs_id" ColumnName="Fs_id" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodShareComment">
+      <EntityTypeMapping TypeName="FoodModel.FoodShareComment">
+        <MappingFragment StoreEntitySet="FoodShareComment">
+          <ScalarProperty Name="FsComment_id" ColumnName="FsComment_id" />
+          <ScalarProperty Name="FsComment_content" ColumnName="FsComment_content" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Fs_id" ColumnName="Fs_id" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodShareReply">
+      <EntityTypeMapping TypeName="FoodModel.FoodShareReply">
+        <MappingFragment StoreEntitySet="FoodShareReply">
+          <ScalarProperty Name="FsReply_id" ColumnName="FsReply_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Fs_id" ColumnName="Fs_id" />
+          <ScalarProperty Name="FsComment_id" ColumnName="FsComment_id" />
+          <ScalarProperty Name="FsReply_content" ColumnName="FsReply_content" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="FoodModel.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="News_addtime" ColumnName="News_addtime" />
+          <ScalarProperty Name="News_id" ColumnName="News_id" />
+          <ScalarProperty Name="News_content" ColumnName="News_content" />
+          <ScalarProperty Name="News_title" ColumnName="News_title" />
+          <ScalarProperty Name="News_img" ColumnName="News_img" />
+          <ScalarProperty Name="News_lable" ColumnName="News_lable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Post">
+      <EntityTypeMapping TypeName="FoodModel.Post">
+        <MappingFragment StoreEntitySet="Post">
+          <ScalarProperty Name="Post_id" ColumnName="Post_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Post_title" ColumnName="Post_title" />
+          <ScalarProperty Name="Post_content" ColumnName="Post_content" />
+          <ScalarProperty Name="Post_img" ColumnName="Post_img" />
+          <ScalarProperty Name="Post_addtime" ColumnName="Post_addtime" />
+          <ScalarProperty Name="Post_lable" ColumnName="Post_lable" />
+          <ScalarProperty Name="ReadCount" ColumnName="ReadCount" />
+          <ScalarProperty Name="Collection" ColumnName="Collection" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostCollection">
+      <EntityTypeMapping TypeName="FoodModel.PostCollection">
+        <MappingFragment StoreEntitySet="PostCollection">
+          <ScalarProperty Name="PostCollection_id" ColumnName="PostCollection_id" />
+          <ScalarProperty Name="Post_id" ColumnName="Post_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostComment">
+      <EntityTypeMapping TypeName="FoodModel.PostComment">
+        <MappingFragment StoreEntitySet="PostComment">
+          <ScalarProperty Name="PostComment_id" ColumnName="PostComment_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Post_id" ColumnName="Post_id" />
+          <ScalarProperty Name="PostComment_content" ColumnName="PostComment_content" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostReply">
+      <EntityTypeMapping TypeName="FoodModel.PostReply">
+        <MappingFragment StoreEntitySet="PostReply">
+          <ScalarProperty Name="PostReply_id" ColumnName="PostReply_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="PostComment_id" ColumnName="PostComment_id" />
+          <ScalarProperty Name="Post_id" ColumnName="Post_id" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+          <ScalarProperty Name="PostReply_content" ColumnName="PostReply_content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfo">
+      <EntityTypeMapping TypeName="FoodModel.UserInfo">
+        <MappingFragment StoreEntitySet="UserInfo">
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="User_pwd" ColumnName="User_pwd" />
+          <ScalarProperty Name="User_name" ColumnName="User_name" />
+          <ScalarProperty Name="User_img" ColumnName="User_img" />
+          <ScalarProperty Name="User_addtime" ColumnName="User_addtime" />
+          <ScalarProperty Name="User_sex" ColumnName="User_sex" />
+          <ScalarProperty Name="User_phone" ColumnName="User_phone" />
+          <ScalarProperty Name="User_birthday" ColumnName="User_birthday" />
+          <ScalarProperty Name="User_sign" ColumnName="User_sign" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Video">
+      <EntityTypeMapping TypeName="FoodModel.Video">
+        <MappingFragment StoreEntitySet="Video">
+          <ScalarProperty Name="Video_id" ColumnName="Video_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Video_url" ColumnName="Video_url" />
+          <ScalarProperty Name="Video_decription" ColumnName="Video_decription" />
+          <ScalarProperty Name="Video_img" ColumnName="Video_img" />
+          <ScalarProperty Name="Video_lable" ColumnName="Video_lable" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+          <ScalarProperty Name="ReadCount" ColumnName="ReadCount" />
+          <ScalarProperty Name="Collection" ColumnName="Collection" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VideoCollection">
+      <EntityTypeMapping TypeName="FoodModel.VideoCollection">
+        <MappingFragment StoreEntitySet="VideoCollection">
+          <ScalarProperty Name="VideoCollection_id" ColumnName="VideoCollection_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Video_id" ColumnName="Video_id" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VideoComment">
+      <EntityTypeMapping TypeName="FoodModel.VideoComment">
+        <MappingFragment StoreEntitySet="VideoComment">
+          <ScalarProperty Name="VideoComment_id" ColumnName="VideoComment_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Video_id" ColumnName="Video_id" />
+          <ScalarProperty Name="VideoComment_content" ColumnName="VideoComment_content" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VideoReply">
+      <EntityTypeMapping TypeName="FoodModel.VideoReply">
+        <MappingFragment StoreEntitySet="VideoReply">
+          <ScalarProperty Name="VideoReply_id" ColumnName="VideoReply_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Video_id" ColumnName="Video_id" />
+          <ScalarProperty Name="VideoComment_id" ColumnName="VideoComment_id" />
+          <ScalarProperty Name="VideoReply_content" ColumnName="VideoReply_content" />
+          <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

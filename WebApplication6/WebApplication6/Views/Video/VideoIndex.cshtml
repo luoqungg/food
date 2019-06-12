@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebApplication6.Models.Video>
+@{
+    ViewBag.Title = "VideoIndex";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<div class="container">
+    <h2>全部视频</h2>
+    <ul style="list-style-type:none">
+        @foreach (var p in Model)
+        {
+            <li style="display:inline">
+                <a href="@Url.Action("VideoDetails","Video",new { id=p.Video_id})"><img src="@p.Video_img" alt="Alternate Text" /></a>
+            </li>
+        }
+    </ul>
+    
+</div>
+
+

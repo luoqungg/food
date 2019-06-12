@@ -1,0 +1,617 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FoodModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Admin_id" />
+    </Key>
+    <Property Name="Admin_id" Type="Int32" Nullable="false" />
+    <Property Name="Admin_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Admin_pwd" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="FoodShare">
+    <Key>
+      <PropertyRef Name="Fs_id" />
+    </Key>
+    <Property Name="Fs_id" Type="Int32" Nullable="false" />
+    <Property Name="User_id" Type="Int32" />
+    <Property Name="Fs_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fs_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Fs_lable" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fs_addtime" Type="DateTime" Precision="3" />
+    <Property Name="Fs_detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ReadCount" Type="Int32" />
+    <Property Name="Collection" Type="Int32" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_FoodShare_UserInfo" FromRole="FoodShare" ToRole="UserInfo" />
+    <NavigationProperty Name="FoodShareCollection" Relationship="Self.FK_FoodShareCollection_FoodShare" FromRole="FoodShare" ToRole="FoodShareCollection" />
+    <NavigationProperty Name="FoodShareComment" Relationship="Self.FK_FoodShareComment_FoodShare" FromRole="FoodShare" ToRole="FoodShareComment" />
+    <NavigationProperty Name="FoodShareReply" Relationship="Self.FK_FoodShareReply_FoodShare" FromRole="FoodShare" ToRole="FoodShareReply" />
+  </EntityType>
+  <EntityType Name="FoodShareCollection">
+    <Key>
+      <PropertyRef Name="FsC_id" />
+    </Key>
+    <Property Name="FsC_id" Type="Int32" Nullable="false" />
+    <Property Name="User_id" Type="Int32" />
+    <Property Name="Fs_id" Type="Int32" />
+    <Property Name="State" Type="Int32" />
+    <NavigationProperty Name="FoodShare" Relationship="Self.FK_FoodShareCollection_FoodShare" FromRole="FoodShareCollection" ToRole="FoodShare" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_FoodShareCollection_UserInfo" FromRole="FoodShareCollection" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="FoodShareComment">
+    <Key>
+      <PropertyRef Name="FsComment_id" />
+    </Key>
+    <Property Name="FsComment_id" Type="Int32" Nullable="false" />
+    <Property Name="FsComment_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="User_id" Type="Int32" />
+    <Property Name="Fs_id" Type="Int32" />
+    <Property Name="Addtime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FoodShare" Relationship="Self.FK_FoodShareComment_FoodShare" FromRole="FoodShareComment" ToRole="FoodShare" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_FoodShareComment_UserInfo" FromRole="FoodShareComment" ToRole="UserInfo" />
+    <NavigationProperty Name="FoodShareReply" Relationship="Self.FK_FoodShareReply_FoodShareComment" FromRole="FoodShareComment" ToRole="FoodShareReply" />
+  </EntityType>
+  <EntityType Name="FoodShareReply">
+    <Key>
+      <PropertyRef Name="FsReply_id" />
+    </Key>
+    <Property Name="FsReply_id" Type="Int32" Nullable="false" />
+    <Property Name="User_id" Type="Int32" />
+    <Property Name="Fs_id" Type="Int32" />
+    <Property Name="FsComment_id" Type="Int32" />
+    <Property Name="FsReply_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Addtime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FoodShare" Relationship="Self.FK_FoodShareReply_FoodShare" FromRole="FoodShareReply" ToRole="FoodShare" />
+    <NavigationProperty Name="FoodShareComment" Relationship="Self.FK_FoodShareReply_FoodShareComment" FromRole="FoodShareReply" ToRole="FoodShareComment" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_FoodShareReply_UserInfo" FromRole="FoodShareReply" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="News_id" />
+    </Key>
+    <Property Name="News_id" Type="Int32" Nullable="false" />
+    <Property Name="News_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="News_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="News_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="News_lable" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="News_addtime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="Post_id" />
+    </Key>
+    <Property Name="Post_id" Type="Int32" Nullable="false" />
+    <Property Name="User_id" Type="Int32" />
+    <Property Name="Post_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Post_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Post_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Post_addtime" Type="DateTime" Precision="3" />
+    <Property Name="Post_lable" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReadCount" Type="Int32" />
+    <Property Name="Collection" Type="Int32" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_Post_UserInfo" FromRole="Post" ToRole="UserInfo" />
+    <NavigationProperty Name="PostCollection" Relationship="Self.FK_PostCollection_Post" FromRole="Post" ToRole="PostCollection" />
+    <NavigationProperty Name="PostComment" Relationship="Self.FK_PostComment_Post" FromRole="Post" ToRole="PostComment" />
+    <NavigationProperty Name="PostReply" Relationship="Self.FK_PostReply_Post" FromRole="Post" ToRole="PostReply" />
+  </EntityType>
+  <EntityType Name="PostCollection">
+    <Key>
+      <PropertyRef Name="PostCollection_id" />
+    </Key>
+    <Property Name="PostCollection_id" Type="Int32" Nullable="false" />
+    <Property Name="Post_id" Type="Int32" />
+    <Property Name="User_id" Type="Int32" />
+    <Property Name="State" Type="Int32" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_PostCollection_Post" FromRole="PostCollection" ToRole="Post" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_PostCollection_UserInfo" FromRole="PostCollection" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="PostComment">
+    <Key>
+      <PropertyRef Name="PostComment_id" />
+    </Key>
+    <Property Name="PostComment_id" Type="Int32" Nullable="false" />
+    <Property Name="User_id" Type="Int32" />
+    <Property Name="Post_id" Type="Int32" />
+    <Property Name="PostComment_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Addtime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_PostComment_Post" FromRole="PostComment" ToRole="Post" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_PostComment_UserInfo" FromRole="PostComment" ToRole="UserInfo" />
+    <NavigationProperty Name="PostReply" Relationship="Self.FK_PostReply_PostComment" FromRole="PostComment" ToRole="PostReply" />
+  </EntityType>
+  <EntityType Name="PostReply">
+    <Key>
+      <PropertyRef Name="PostReply_id" />
+    </Key>
+    <Property Name="PostReply_id" Type="Int32" Nullable="false" />
+    <Property Name="User_id" Type="Int32" />
+    <Property Name="PostComment_id" Type="Int32" />
+    <Property Name="Post_id" Type="Int32" />
+    <Property Name="Addtime" Type="DateTime" Precision="3" />
+    <Property Name="PostReply_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_PostReply_Post" FromRole="PostReply" ToRole="Post" />
+    <NavigationProperty Name="PostComment" Relationship="Self.FK_PostReply_PostComment" FromRole="PostReply" ToRole="PostComment" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_PostReply_UserInfo" FromRole="PostReply" ToRole="UserInfo" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="User_id" />
+    </Key>
+    <Property Name="User_id" Type="Int32" Nullable="false" />
+    <Property Name="User_pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="User_img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_addtime" Type="DateTime" Precision="3" />
+    <Property Name="User_sex" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="User_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_birthday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_sign" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="FoodShare" Relationship="Self.FK_FoodShare_UserInfo" FromRole="UserInfo" ToRole="FoodShare" />
+    <NavigationProperty Name="FoodShareCollection" Relationship="Self.FK_FoodShareCollection_UserInfo" FromRole="UserInfo" ToRole="FoodShareCollection" />
+    <NavigationProperty Name="FoodShareComment" Relationship="Self.FK_FoodShareComment_UserInfo" FromRole="UserInfo" ToRole="FoodShareComment" />
+    <NavigationProperty Name="FoodShareReply" Relationship="Self.FK_FoodShareReply_UserInfo" FromRole="UserInfo" ToRole="FoodShareReply" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_Post_UserInfo" FromRole="UserInfo" ToRole="Post" />
+    <NavigationProperty Name="PostCollection" Relationship="Self.FK_PostCollection_UserInfo" FromRole="UserInfo" ToRole="PostCollection" />
+    <NavigationProperty Name="PostComment" Relationship="Self.FK_PostComment_UserInfo" FromRole="UserInfo" ToRole="PostComment" />
+    <NavigationProperty Name="PostReply" Relationship="Self.FK_PostReply_UserInfo" FromRole="UserInfo" ToRole="PostReply" />
+    <NavigationProperty Name="Video" Relationship="Self.FK_Video_UserInfo" FromRole="UserInfo" ToRole="Video" />
+    <NavigationProperty Name="VideoCollection" Relationship="Self.FK_VideoCollection_UserInfo" FromRole="UserInfo" ToRole="VideoCollection" />
+    <NavigationProperty Name="VideoComment" Relationship="Self.FK_VideoComment_UserInfo" FromRole="UserInfo" ToRole="VideoComment" />
+    <NavigationProperty Name="VideoReply" Relationship="Self.FK_VideoReply_UserInfo" FromRole="UserInfo" ToRole="VideoReply" />
+  </EntityType>
+  <EntityType Name="Video">
+    <Key>
+      <PropertyRef Name="Video_id" />
+    </Key>
+    <Property Name="Video_id" Type="Int32" Nullable="false" />
+    <Property Name="User_id" Type="Int32" />
+    <Property Name="Video_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Video_decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Video_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Video_lable" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Addtime" Type="DateTime" Precision="3" />
+    <Property Name="ReadCount" Type="Int32" />
+    <Property Name="Collection" Type="Int32" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_Video_UserInfo" FromRole="Video" ToRole="UserInfo" />
+    <NavigationProperty Name="VideoCollection" Relationship="Self.FK_VideoCollection_Video" FromRole="Video" ToRole="VideoCollection" />
+    <NavigationProperty Name="VideoComment" Relationship="Self.FK_VideoComment_Video" FromRole="Video" ToRole="VideoComment" />
+    <NavigationProperty Name="VideoReply" Relationship="Self.FK_VideoReply_Video" FromRole="Video" ToRole="VideoReply" />
+  </EntityType>
+  <EntityType Name="VideoCollection">
+    <Key>
+      <PropertyRef Name="VideoCollection_id" />
+    </Key>
+    <Property Name="VideoCollection_id" Type="Int32" Nullable="false" />
+    <Property Name="User_id" Type="Int32" />
+    <Property Name="Video_id" Type="Int32" />
+    <Property Name="State" Type="Int32" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_VideoCollection_UserInfo" FromRole="VideoCollection" ToRole="UserInfo" />
+    <NavigationProperty Name="Video" Relationship="Self.FK_VideoCollection_Video" FromRole="VideoCollection" ToRole="Video" />
+  </EntityType>
+  <EntityType Name="VideoComment">
+    <Key>
+      <PropertyRef Name="VideoComment_id" />
+    </Key>
+    <Property Name="VideoComment_id" Type="Int32" Nullable="false" />
+    <Property Name="User_id" Type="Int32" />
+    <Property Name="Video_id" Type="Int32" />
+    <Property Name="VideoComment_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Addtime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_VideoComment_UserInfo" FromRole="VideoComment" ToRole="UserInfo" />
+    <NavigationProperty Name="Video" Relationship="Self.FK_VideoComment_Video" FromRole="VideoComment" ToRole="Video" />
+    <NavigationProperty Name="VideoReply" Relationship="Self.FK_VideoReply_VideoComment" FromRole="VideoComment" ToRole="VideoReply" />
+  </EntityType>
+  <EntityType Name="VideoReply">
+    <Key>
+      <PropertyRef Name="VideoReply_id" />
+    </Key>
+    <Property Name="VideoReply_id" Type="Int32" Nullable="false" />
+    <Property Name="User_id" Type="Int32" />
+    <Property Name="Video_id" Type="Int32" />
+    <Property Name="VideoComment_id" Type="Int32" />
+    <Property Name="VideoReply_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Addtime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_VideoReply_UserInfo" FromRole="VideoReply" ToRole="UserInfo" />
+    <NavigationProperty Name="Video" Relationship="Self.FK_VideoReply_Video" FromRole="VideoReply" ToRole="Video" />
+    <NavigationProperty Name="VideoComment" Relationship="Self.FK_VideoReply_VideoComment" FromRole="VideoReply" ToRole="VideoComment" />
+  </EntityType>
+  <Association Name="FK_FoodShare_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="FoodShare" Type="Self.FoodShare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="FoodShare">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodShareCollection_FoodShare">
+    <End Role="FoodShare" Type="Self.FoodShare" Multiplicity="0..1" />
+    <End Role="FoodShareCollection" Type="Self.FoodShareCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodShare">
+        <PropertyRef Name="Fs_id" />
+      </Principal>
+      <Dependent Role="FoodShareCollection">
+        <PropertyRef Name="Fs_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodShareComment_FoodShare">
+    <End Role="FoodShare" Type="Self.FoodShare" Multiplicity="0..1" />
+    <End Role="FoodShareComment" Type="Self.FoodShareComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodShare">
+        <PropertyRef Name="Fs_id" />
+      </Principal>
+      <Dependent Role="FoodShareComment">
+        <PropertyRef Name="Fs_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodShareReply_FoodShare">
+    <End Role="FoodShare" Type="Self.FoodShare" Multiplicity="0..1" />
+    <End Role="FoodShareReply" Type="Self.FoodShareReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodShare">
+        <PropertyRef Name="Fs_id" />
+      </Principal>
+      <Dependent Role="FoodShareReply">
+        <PropertyRef Name="Fs_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodShareCollection_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="FoodShareCollection" Type="Self.FoodShareCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="FoodShareCollection">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodShareComment_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="FoodShareComment" Type="Self.FoodShareComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="FoodShareComment">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodShareReply_FoodShareComment">
+    <End Role="FoodShareComment" Type="Self.FoodShareComment" Multiplicity="0..1" />
+    <End Role="FoodShareReply" Type="Self.FoodShareReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodShareComment">
+        <PropertyRef Name="FsComment_id" />
+      </Principal>
+      <Dependent Role="FoodShareReply">
+        <PropertyRef Name="FsComment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodShareReply_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="FoodShareReply" Type="Self.FoodShareReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="FoodShareReply">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostCollection_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+    <End Role="PostCollection" Type="Self.PostCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Post_id" />
+      </Principal>
+      <Dependent Role="PostCollection">
+        <PropertyRef Name="Post_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostComment_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+    <End Role="PostComment" Type="Self.PostComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Post_id" />
+      </Principal>
+      <Dependent Role="PostComment">
+        <PropertyRef Name="Post_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostReply_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+    <End Role="PostReply" Type="Self.PostReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Post_id" />
+      </Principal>
+      <Dependent Role="PostReply">
+        <PropertyRef Name="Post_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostCollection_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="PostCollection" Type="Self.PostCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="PostCollection">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostComment_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="PostComment" Type="Self.PostComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="PostComment">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostReply_PostComment">
+    <End Role="PostComment" Type="Self.PostComment" Multiplicity="0..1" />
+    <End Role="PostReply" Type="Self.PostReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PostComment">
+        <PropertyRef Name="PostComment_id" />
+      </Principal>
+      <Dependent Role="PostReply">
+        <PropertyRef Name="PostComment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostReply_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="PostReply" Type="Self.PostReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="PostReply">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Video_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="Video" Type="Self.Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoCollection_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="VideoCollection" Type="Self.VideoCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="VideoCollection">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoComment_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="VideoComment" Type="Self.VideoComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="VideoComment">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoReply_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="VideoReply" Type="Self.VideoReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="VideoReply">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoCollection_Video">
+    <End Role="Video" Type="Self.Video" Multiplicity="0..1" />
+    <End Role="VideoCollection" Type="Self.VideoCollection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="Video_id" />
+      </Principal>
+      <Dependent Role="VideoCollection">
+        <PropertyRef Name="Video_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoComment_Video">
+    <End Role="Video" Type="Self.Video" Multiplicity="0..1" />
+    <End Role="VideoComment" Type="Self.VideoComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="Video_id" />
+      </Principal>
+      <Dependent Role="VideoComment">
+        <PropertyRef Name="Video_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoReply_Video">
+    <End Role="Video" Type="Self.Video" Multiplicity="0..1" />
+    <End Role="VideoReply" Type="Self.VideoReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="Video_id" />
+      </Principal>
+      <Dependent Role="VideoReply">
+        <PropertyRef Name="Video_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoReply_VideoComment">
+    <End Role="VideoComment" Type="Self.VideoComment" Multiplicity="0..1" />
+    <End Role="VideoReply" Type="Self.VideoReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VideoComment">
+        <PropertyRef Name="VideoComment_id" />
+      </Principal>
+      <Dependent Role="VideoReply">
+        <PropertyRef Name="VideoComment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FoodEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin" EntityType="Self.Admin" />
+    <EntitySet Name="FoodShare" EntityType="Self.FoodShare" />
+    <EntitySet Name="FoodShareCollection" EntityType="Self.FoodShareCollection" />
+    <EntitySet Name="FoodShareComment" EntityType="Self.FoodShareComment" />
+    <EntitySet Name="FoodShareReply" EntityType="Self.FoodShareReply" />
+    <EntitySet Name="News" EntityType="Self.News" />
+    <EntitySet Name="Post" EntityType="Self.Post" />
+    <EntitySet Name="PostCollection" EntityType="Self.PostCollection" />
+    <EntitySet Name="PostComment" EntityType="Self.PostComment" />
+    <EntitySet Name="PostReply" EntityType="Self.PostReply" />
+    <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
+    <EntitySet Name="Video" EntityType="Self.Video" />
+    <EntitySet Name="VideoCollection" EntityType="Self.VideoCollection" />
+    <EntitySet Name="VideoComment" EntityType="Self.VideoComment" />
+    <EntitySet Name="VideoReply" EntityType="Self.VideoReply" />
+    <AssociationSet Name="FK_FoodShare_UserInfo" Association="Self.FK_FoodShare_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="FoodShare" EntitySet="FoodShare" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodShareCollection_FoodShare" Association="Self.FK_FoodShareCollection_FoodShare">
+      <End Role="FoodShare" EntitySet="FoodShare" />
+      <End Role="FoodShareCollection" EntitySet="FoodShareCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodShareComment_FoodShare" Association="Self.FK_FoodShareComment_FoodShare">
+      <End Role="FoodShare" EntitySet="FoodShare" />
+      <End Role="FoodShareComment" EntitySet="FoodShareComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodShareReply_FoodShare" Association="Self.FK_FoodShareReply_FoodShare">
+      <End Role="FoodShare" EntitySet="FoodShare" />
+      <End Role="FoodShareReply" EntitySet="FoodShareReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodShareCollection_UserInfo" Association="Self.FK_FoodShareCollection_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="FoodShareCollection" EntitySet="FoodShareCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodShareComment_UserInfo" Association="Self.FK_FoodShareComment_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="FoodShareComment" EntitySet="FoodShareComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodShareReply_FoodShareComment" Association="Self.FK_FoodShareReply_FoodShareComment">
+      <End Role="FoodShareComment" EntitySet="FoodShareComment" />
+      <End Role="FoodShareReply" EntitySet="FoodShareReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodShareReply_UserInfo" Association="Self.FK_FoodShareReply_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="FoodShareReply" EntitySet="FoodShareReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_UserInfo" Association="Self.FK_Post_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="Post" EntitySet="Post" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostCollection_Post" Association="Self.FK_PostCollection_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="PostCollection" EntitySet="PostCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostComment_Post" Association="Self.FK_PostComment_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="PostComment" EntitySet="PostComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostReply_Post" Association="Self.FK_PostReply_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="PostReply" EntitySet="PostReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostCollection_UserInfo" Association="Self.FK_PostCollection_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="PostCollection" EntitySet="PostCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostComment_UserInfo" Association="Self.FK_PostComment_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="PostComment" EntitySet="PostComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostReply_PostComment" Association="Self.FK_PostReply_PostComment">
+      <End Role="PostComment" EntitySet="PostComment" />
+      <End Role="PostReply" EntitySet="PostReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostReply_UserInfo" Association="Self.FK_PostReply_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="PostReply" EntitySet="PostReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Video_UserInfo" Association="Self.FK_Video_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="Video" EntitySet="Video" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoCollection_UserInfo" Association="Self.FK_VideoCollection_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="VideoCollection" EntitySet="VideoCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoComment_UserInfo" Association="Self.FK_VideoComment_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="VideoComment" EntitySet="VideoComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoReply_UserInfo" Association="Self.FK_VideoReply_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="VideoReply" EntitySet="VideoReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoCollection_Video" Association="Self.FK_VideoCollection_Video">
+      <End Role="Video" EntitySet="Video" />
+      <End Role="VideoCollection" EntitySet="VideoCollection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoComment_Video" Association="Self.FK_VideoComment_Video">
+      <End Role="Video" EntitySet="Video" />
+      <End Role="VideoComment" EntitySet="VideoComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoReply_Video" Association="Self.FK_VideoReply_Video">
+      <End Role="Video" EntitySet="Video" />
+      <End Role="VideoReply" EntitySet="VideoReply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoReply_VideoComment" Association="Self.FK_VideoReply_VideoComment">
+      <End Role="VideoComment" EntitySet="VideoComment" />
+      <End Role="VideoReply" EntitySet="VideoReply" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

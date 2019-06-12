@@ -1,0 +1,40 @@
+﻿@model WebApplication6.Models.FoodShare
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <style>
+        .a {
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Edit", "Admin", FormMethod.Post))
+        {
+            <span></span>
+            @*@Model.Fs_id*@
+            @Html.HiddenFor(u => u.Fs_id);
+            <br />
+            <span class="a">菜名</span>
+            @Html.TextBoxFor(u => u.Fs_title, new { @class = "a" })
+            <br />
+            <span class=" a">标签</span>
+            @Html.TextBoxFor(u => u.Fs_lable, new { @class = "a" })
+            <br />
+            <span>菜谱做法</span>
+            @Html.TextAreaFor(u => u.Fs_detail, new { @style = "height:150px;width:350px;font-size:15px;" })
+            <br />
+
+            <input type="submit" value="修改" />
+        }
+    </div>
+</body>
+</html>

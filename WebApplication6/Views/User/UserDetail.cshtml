@@ -1,0 +1,32 @@
+﻿@model WebApplication6.ViewModel.UserViewModel
+@{
+    ViewBag.Title = "UserDetail";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <title></title>
+</head>
+<body>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#tab-weekvisit" role="tab" data-toggle="tab">本月热门</a></li>
+        <li role="presentation"><a href="#tab-goodnum" role="tab" data-toggle="tab">收藏排行</a></li>
+        <li role="presentation"><a href="#tab-allvote" role="tab" data-toggle="tab">网友推荐</a></li>
+    </ul>
+    <ul class="nav nav-tabs" role="tablist">
+        <li></li>
+    </ul>
+</body>
+</html>
+
+@foreach(var p in Model.USERINFO)
+{
+    
+    <img src="../@p.User_img"/>
+    <div rel="@ViewBag.rel"></div>
+}
+<h2>UserDetail</h2>
+

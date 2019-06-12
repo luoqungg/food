@@ -1,0 +1,138 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<WebApplication6.Models.Video>
+@{
+    ViewBag.Title = "VideoIndex";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<style>
+    body {
+        background: #f5f5f5 !important;
+    }
+
+    .video-list {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .videoss {
+        margin-top: 30px;
+    }
+
+    .video-list .video-item {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        background: #fff;
+    }
+
+    .video-list .video-item-lt a {
+        position: static;
+        display: block;
+        color: #333 !important;
+        text-decoration: none;
+    }
+
+    .video-list .video-item-lt img {
+        max-width: 100%;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        height: 100.8px
+    }
+
+    a img {
+        border: none;
+    }
+
+    .video-list .video-item-lt {
+        position: relative;
+        width: 180px;
+        overflow: hidden;
+    }
+
+    .video-list .video-item-rb {
+        flex: 1;
+        padding: 5px 15px;
+        overflow: hidden;
+    }
+
+        .video-list .video-item-rb:hover {
+            box-shadow: 0 0 8px rgba(64,64,64,.4);
+        }
+
+    .video-list .video-item .text-title {
+        line-height: 1.5;
+        max-height: 3rem;
+    }
+
+    .video-list .video-item a {
+        color: #333 !important;
+        text-decoration: none;
+    }
+
+    .video-list .video-item .text-block {
+        line-height: 1.6rem;
+        overflow: hidden;
+    }
+
+    .text-block {
+        display: block;
+        width: 100%;
+    }
+
+    .video-list .video-item .text-block:not(:first-child) {
+        margin-top: .8rem;
+    }
+
+    .video-list .video-item .text-artist {
+        opacity: .7;
+    }
+
+    .video-list .video-item .text-block:not(:first-child) {
+        margin-top: .8rem;
+    }
+
+    .video-list .video-item .description {
+        opacity: .7;
+        height: 1.5rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>
+<div class="container videoss video-list">
+    <h4>全部视频</h4>
+    <div class="row">
+        @foreach (var p in Model)
+        {
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div class="video-item">
+                    <div class="video-item-lt">
+                        <a href="@Url.Action("VideoDetails","Video", new { id=p.Video_id,uid=@p.User_id})"><img src="@p.Video_img" width="180" alt=""></a>
+                    </div>
+                    <div class="video-item-rb">
+                        <div class="text-block text-title">
+                            <a href="@Url.Action("VideoDetails","Video", new { id=p.Video_id,uid=@p.User_id})" title="">@p.Video_decription</a>
+                        </div>
+                        <div class="text-block text-artist">
+                            <a href="">UP主:@p.UserInfo.User_name</a>
+                        </div>
+                        <div class="text-block description">类别:@p.Video_lable</div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+<div style="text-align:center">
+    @*<div>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>*@
+    <li style="list-style-type:none">@Html.PagedListPager(Model, page => Url.Action("VideoIndex", new { page }), new PagedListRenderOptions() { LinkToFirstPageFormat = "首页", LinkToNextPageFormat = "下一页", LinkToPreviousPageFormat = "上一页", LinkToLastPageFormat = "末页", DisplayItemSliceAndTotal = false, MaximumPageNumbersToDisplay = 3 })  </li>
+</div>
+
+

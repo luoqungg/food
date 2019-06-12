@@ -1,0 +1,20 @@
+﻿@using WebApplication6.Models
+@using WebApplication6.ViewModel
+@model WebApplication6.ViewModel.PostDetailViewModel
+
+
+
+@foreach (var p in Model.post_reply)
+{
+    <div id="" style="width: 100%;">
+        <div id="" style="height: 40px;margin:50px 5px 5px 5px;">
+            <div class="head-face">
+                <img src="@p.User_img" style="width:40px;height:100%;">
+            </div>
+            <label class="username">@p.User_name:</label>
+            <p class="comment-body">@p.ReplyContent</p>
+        </div>
+    </div>
+}
+
+

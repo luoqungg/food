@@ -1,0 +1,68 @@
+﻿@model  WebApplication6.Models.UserCommentDetailModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+<style>
+    .textarea {
+        width: 200px;
+        height: 100px;
+        margin-left: 30px;
+    }
+
+    .img1 {
+        margin-left: 20px;
+    }
+</style>
+<script type="text/javascript">
+    function login() {
+        if @Session["Username"] = null 
+          alert(您还没有登录);
+    }
+</script>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h2>&nbsp; &nbsp;&nbsp;&nbsp;菜谱做法</h2>
+    <div>
+        @foreach (var p in Model.FOODSHARE)
+        {
+            <div style="margin-left:300px;margin-right:300px;height :300px; ">
+                <p style="font-size :20px;">@p.Fs_title   </p>
+                <img class="img1" src="@p.Fs_img" style=" width:200px; height:200px;z-index :2;" />
+                <p style=" font-size :25px;">@p.Fs_detail   </p>
+            </div>
+        }
+    </div>
+
+    <div id="result" style=" position:absolute ;top:600px;">
+
+        @foreach (var n in Model.USERCOMMENT)
+        {
+            <img style=" margin-left :300px;width :150px;height :150px;" src=" @n.USER_IMG"> <p style=" margin-left :450px;">@n.USER_NAME</p>
+
+            <p>@n.COMMENT</p>
+
+
+        }
+
+    </div>
+    <div>
+        @using (Ajax.BeginForm("Detail", "Caipu", new AjaxOptions { Confirm = "您是否评论?", HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "result", OnSuccess = "login" }))
+        {
+            <textarea class="textarea" placeholder=" 评论" name="a">
+       </textarea>
+            <input type="submit" value=" 提交">
+
+        }
+    </div>
+</body>
+</html>
+

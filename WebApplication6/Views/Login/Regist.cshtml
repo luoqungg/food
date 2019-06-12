@@ -1,0 +1,82 @@
+﻿@model WebApplication6 .Models .UserInfo 
+@{
+    ViewBag.Title = "Regist";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>注册</title>
+    <style>
+        .a {
+            position: absolute;
+            left: 250px;
+            top: 150px;
+        }
+
+        .b {
+            position: absolute;
+            left: 1000px;
+            top: 150px;
+        }
+
+        p {
+            position: absolute;
+            left: 1000px;
+            top: 350px;
+        }
+
+        .login {
+            position: absolute;
+            left: 250px;
+            top: 250px;
+        }
+    </style>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body  >
+    <h1 class="a">注册</h1>
+    <div class=" login ">
+        @using (Html.BeginForm("Regist", "Login", FormMethod.Post))
+        {
+            @*<span> 电话号码：</span>@Html.TextBoxFor(n => n.User_phone)
+            @Html.ValidationMessageFor(c => c.User_phone)
+            <br /><br />
+            <span>  密码： </span>@Html.TextBoxFor(n => n.User_pwd)
+            @Html.ValidationMessageFor(c => c.User_pwd)
+            <br /><br />*@
+            @Html.Label("电话号码")
+            @Html.TextBoxFor(c => c.User_phone)
+            @Html.ValidationMessageFor(c => c.User_phone)
+            <br />
+            @Html.Label("密码")
+            @Html.TextBoxFor(c => c.User_pwd, new { @type = "password" })
+            @Html.ValidationMessageFor(c => c.User_pwd)
+            <br />
+            <label>验证码</label>
+            <div>
+                <div style="float: left;">
+                    <input style="width: 200px;" id="txtverifcode1" name="txtverifcode1" type="text">
+                </div>
+                <div style="float: left;">
+                    <span id="txtverifcod2"> <img id="validimgs" src="@Url.Action("GetYZM", "YZM")" alt="看不清，点击换一张" /><a style="text-decoration:none;cursor:pointer" id="seee" onclick="reloadcodes()">换一张</a></span>
+
+                </div>
+            </div>
+            <br />
+            <input type="submit" value="注册" /><br />
+        }
+    </div>
+
+
+    <img class=" b" src="~/images/微信二维码.jpg" width=" 200" height=" 200" />
+    <p style="font :100 px;">扫描二维码，关注公众号哦╮(‵▽′)╭</p>
+
+</body>
+</html>

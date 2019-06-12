@@ -1,0 +1,162 @@
+﻿@model  WebApplication6.Models.UserCommentDetailModel
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+
+<style>
+    .huifu {
+    position:absolute;
+    margin-left:900px;
+    }
+    .huifu1 {
+        margin-left: 00px;
+        width: 300px;
+        height: 100px;
+    }
+    .textarea {
+        width: 400px;
+        height: 120px;
+    }
+
+    .img1 {
+        margin-left: 20px;
+    }
+
+    h2 {
+        margin-left: 230px;
+    }
+
+    .img {
+    }
+
+        .img:hover {
+            cursor: pointer;
+            transform: rotateY(180deg);
+        }
+</style>
+<script>
+    function pingluen() {
+        //alert("评论成功");
+        location.reload();
+    }
+        function reply() {
+            //alert("评论成功");
+            location.reload();
+
+    }
+</script>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="height:1500px;">
+    <h2>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;菜谱做法</h2>
+
+    <a href="@Url.Action("Index","Home")"> <img class="img" src="~/images/Logo.jpg" style="width:300px;height:250px; position:absolute;top:250px;left:900px;" /> </a>
+
+
+    <img src="~/images/9903_1.jpg" style="margin-left:300px;" />
+    <div>
+        @foreach (var p in Model.FOODSHARE)
+        {
+            <div style="margin-left:300px;margin-right:300px;height :300px; ">
+                <p style="font-size :30px;">@p.Fs_title   </p>
+                <p id="dianzanshu" style="position:absolute;top:810px;left:825px;">@p.ReadCount</p>
+                  
+                <img class="img1" src="@p.Fs_img" style=" width:300px; height:300px;z-index :2;" />
+                <div style=" font-size :25px;">@p.Fs_detail   </div>
+            </div>
+        }
+    </div>
+    <div style="position :absolute ;margin-left :300px;margin-top :200px; ">
+        @using (Ajax.BeginForm("Pingluen", "Caipu", new AjaxOptions { Confirm = "您是否评论?", HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "result", OnSuccess = "pingluen()" }))
+        {
+            <textarea class="textarea" placeholder="评论最多200字" name="a"></textarea>
+            <button type="submit">提交</button>
+        }
+    </div>
+    <div class="" id="result" style=" position:absolute ;top:850px;width:850px;margin-left:300px;background-color:antiquewhite;">
+
+        <div>
+            @foreach (var n in Model.USERCOMMENT)
+            {
+                <div class="">
+                    <div class="">
+                        <img style=" margin-left :0px;width :50px;height :50px;" src="@n.USER_IMG">
+                        <a class="page-header" style=" ">@n.USER_NAME</a>
+                        <p style="font-size :20px;margin-top :10px;">@n.COMMENT</p>
+                       
+                        @using (Ajax.BeginForm("Reply", "Caipu", new AjaxOptions { Confirm = "您是否评论?", HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "result", OnSuccess = "reply()" }))
+                        {
+
+                            <input type="hidden" name="comment_id" value="@n.FS_COMMENTID" />
+
+                            <input type="button" value="回复" class="huifu">
+                            <div id="reply" class="huifu1 collapse">
+                                <textarea style=" width: 300px;height: 100px;" name="reply" placeholder="评论不超过200字！"></textarea>
+                                <input type="submit" value="回复" style="">
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        <div style="margin-left:100px; background-color:floralwhite;" >
+            @foreach (var m in Model.FOODSHAREREPLY)
+            {
+                <img style="margin-left:0px;width :50px;height:50px;" src="@m.USER_IMG">
+                <p style="font-size:15px;margin-left:150px;">@m.REPLY</p>
+                <label style="margin-top:-90px;margin-left:100px;">@m.ADDTIME</label>
+            }
+        </div>
+    </div>
+    <div>
+       
+        <p style="position:absolute;top:790px;left:820px;">点赞</p>
+        @using (Ajax.BeginForm("Dianzan", "Caipu", new AjaxOptions { UpdateTargetId = "dianzanshu", HttpMethod = "Post", InsertionMode = InsertionMode.Replace }))
+        {
+
+            <input type="image" onclick="change()" id="dianzan" src="/images/点赞前.png" name="img" style=" width:70px;height:70px;position:absolute;top:720px;left:800px;">
+        }
+    </div>
+    <div>
+        @using (Ajax.BeginForm("Collection", "Caipu",new AjaxOptions { Confirm = "您是否收藏?", HttpMethod ="Post"}))
+        {
+            <input type="image"src="/images/收藏.jpg" name="img" style=" width:200px;height:150px;position:absolute;top:700px;left:900px;">
+
+        }
+       </div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".huifu").click(function () {
+            $(".huifu1").toggle();
+        });
+    });
+    
+    function change()
+    {
+        element = document.getElementById('dianzan')
+        if (element.src.match("bulbon")) {
+            element.src = "~/images/点赞前.png"
+        }
+        else
+        {
+            element.src = "/images/点赞后.png"
+        }
+    }
+   
+</script>
+

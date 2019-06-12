@@ -1,0 +1,102 @@
+* {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        a, img {
+            border: 0;
+        }
+
+        body {
+            font: 12px;
+        }
+
+        .clearfix:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        .clearfix {
+            display: inline-table;
+        }
+        /* Hides from IE-mac \*/
+        *html .clearfix {
+            height: 1%;
+        }
+
+        .clearfix {
+            display: block;
+        }
+        /* End hide from IE-mac */
+        * + html .clearfix {
+            min-height: 1%;
+        }
+        /* lanrenzhijia */
+        .lanrenzhijia {
+            width: 950px;
+            margin: 0 auto 0 auto;
+            overflow: hidden;
+        }
+
+            .lanrenzhijia ul {
+                width: 950px;
+            }
+
+                .lanrenzhijia ul li {
+                    float: left;
+                    margin-right: 6px;
+                    margin-bottom: 10px;
+                    display: inline;
+                    height: 160px;
+                    width: 20%;
+                    overflow: hidden;
+                    position: relative;
+                }
+
+                    .lanrenzhijia ul li .photo {
+                        width: 100%;
+                        height: 160px;
+                        overflow: hidden;
+                    }
+
+            .lanrenzhijia .rsp {
+                width: 100%;
+                height: 40%;
+                hidden;
+                position: absolute;
+                background: #000;
+                top: 0px;
+                left: 0px;
+            }
+
+            .lanrenzhijia .text {
+                position: absolute;
+                height: 40%;
+                width: 100%;
+                left: -300px;
+                top: 0px;
+                overflow: hidden;
+            }
+
+                .lanrenzhijia .text h3 {
+                    width: 100%;
+                    height: 10px;
+                    line-height: 10px;
+                    text-align: center;
+                    color: #FFFFFF;
+                    font-size: 20px;
+                }
+
+                .lanrenzhijia .text a {
+                    text-decoration: none
+                }
+
+                .lanrenzhijia .text div {
+                    text-align: center;
+                    color: #FFFFFF;
+                    font-size: 18px;
+                }

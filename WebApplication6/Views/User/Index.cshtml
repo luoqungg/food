@@ -1,0 +1,184 @@
+﻿@*@model WebApplication6.Models .UserInfo*@
+@model WebApplication6.ViewModel.UserViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/jquery-1.8.3.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<style>
+    .div {
+        padding-left: 90px;
+        width: 100%;
+        background-color: #ff6767;
+        height: 50px;
+    }
+
+    .img {
+        width: 170px;
+        height: 170px;
+        margin-left: 250px;
+    }
+
+        .img:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+            transition: all 0.3s;
+        }
+
+    .li1 {
+        /*float: left;*/
+        /*margin-left: 180px;*/
+    }
+
+    .a {
+        position: absolute;
+        top: 420px;
+        width: 100%;
+        background-color: white;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .li {
+        float: left;
+        font-size: 25px;
+        color: white;
+    }
+
+    .img1 {
+        width: 100%;
+        height: 300px;
+        z-index: 2;
+    }
+
+    .img2 {
+        width: 150px;
+        height: 150px;
+        border-radius: 100px;
+        z-index: 3;
+        position: absolute;
+        top: 140px;
+        left: 200px;
+    }
+
+    p {
+        top: 150px;
+        position: absolute;
+        left: 350px;
+        font-size: 50px;
+    }
+
+    .label1 {
+        top: 220px;
+        position: absolute;
+        left: 350px;
+        font-size: 20px;
+    }
+
+    b {
+        top: 250px;
+        position: absolute;
+        left: 350px;
+        font-size: 25px;
+    }
+</style>
+<div style="width:100%;height:300px;">
+    @foreach (var n in Model.USERINFO)
+    {
+        <img class="img1" src="~/images/beijing2.jpg" />
+        <img src="@n.User_img" class="img2" />
+        <p>@n.User_name</p>
+        <label class="label1">性别: @n.User_sex</label>
+        <b> 个性签名：@n.User_sign</b>
+    }
+</div>
+<img style="position:absolute;top:420px;left:900px;  width:300px;height:600px;z-index:5;" src="~/images/beijing.jpg" />
+<div class="div">
+    <ul>
+        <a href="#ios1" data-toggle="tab"><li class="li">我的菜谱&nbsp;&nbsp;&nbsp;</li></a>
+        <a href="#ios" data-toggle="tab"> <li id="hide1" class="li">我的评论&nbsp;&nbsp;&nbsp;</li></a>
+        <a href="#ios2" data-toggle="tab"> <li class="li">我的视频&nbsp;&nbsp;&nbsp;</li></a>
+        <a href="#ios3" data-toggle="tab"> <li class="li">我的收藏&nbsp;&nbsp;&nbsp;</li></a>
+        <a href="#ios4" data-toggle="tab"> <li class="li">我的信息</li></a>
+    </ul>
+</div>
+<div class="tab-content">
+    <div class=" a tab-pane fade  " id="ios">
+        <div class="panel-body">
+            @foreach (var n in Model.FOODSHARECOMMENT)
+            {
+                <ul>
+                    <li> @n.FsComment_content</li>
+                </ul>
+            }
+        </div>
+    </div>
+    <div class=" a tab-pane fade " id="ios2">
+        <div class="panel-body">
+            @foreach (var n in Model.VIDEO)
+            {
+                <ul>
+                    <li class="li1"><img class="img" src="@n.Video_img"> </li>
+                </ul>
+            }
+        </div>
+    </div>
+    <div class=" a tab-pane fade in active" id="ios1">
+        <div class="panel-body">
+            @foreach (var n in Model.FOODSHARE)
+            {
+                <ul>
+                    <a href="@Url.Action("Edit","Admin",new{id=@n.Fs_id})"><li class="li1"><img class="img" src="@n.Fs_img"> </li></a>
+                </ul>
+                <label style="font-size:30px;margin-left:530px;margin-top:-200px;">@n.Fs_title</label>
+                <div style="width:200px;height:200px;margin-left:530px;margin-top:-130px;">
+                    <label style="font-size:10px;">@n.Fs_detail</label>
+                </div>
+            }
+        </div>
+    </div>
+    <div class=" a tab-pane fade" id="ios3">
+        <div class="panel-body">
+            @foreach (var n in Model.FOODSHARE1)
+            {
+                <ul>
+                    <li class="li1">  <a href="@Url.Action("Detail","Caipu",new { id=@n.Fs_id})"><img class="img" src="@n.Fs_img"></a></li>
+                </ul>
+            }
+        </div>
+    </div>
+    <div class=" a tab-pane fade" id="ios4">
+        <div class="panel-body">
+            @foreach (var n in Model.USERINFO)
+            {
+                using (Html.BeginForm("Xiugai", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <span>用户头像：</span><input type="file" value="" name="User_img">
+                    <span>用户名：</span><input type="text" value="" name="User_name">
+                    <br />
+                    <span>性别: &nbsp;&nbsp;&nbsp;</span><input type="text" value="" name="User_sex">
+                    <br />
+                    <span>个性签名：</span> <input type="text" value="" name="User_sign">
+                    <br />
+                    <input type="submit" value="确认修改" onclick="a()">
+                }
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function a() {
+        location.reload();
+    }
+</script>
+
+
+
+
+
+
